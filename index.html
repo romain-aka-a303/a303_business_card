@@ -1,1 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A303 – DJ techno</title>
+<meta name="description" content="A303, DJ techno. Écoutez les mixes sur SoundCloud et YouTube.">
+<meta property="og:title" content="A303 – DJ techno">
+<meta property="og:description" content="Techno brute, sombre, glitchée. Mixes sur SoundCloud et YouTube.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #000;
+    --fg: #dcdcdc;
+    --dim: #7d7d7d;
+    --line: #2a2a2a;
+    --cyan: #00e5ff;
+    --magenta: #ff2bd6;
+    --display: "Big Shoulders Display", Impact, "Arial Narrow Bold", sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: var(--bg); color: var(--fg); scroll-behavior: smooth; }
+  body {
+    font-family: var(--mono);
+    font-size: 1rem;
+    line-height: 1.7;
+    min-height: 100vh;
+    padding: 0 clamp(1.25rem, 5vw, 4rem);
+    position: relative;
+    overflow-x: hidden;
+  }
+  /* grain */
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    pointer-events: none;
+    opacity: .12;
+    z-index: 10;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--cyan); outline-offset: 4px; }
+  ::selection { background: var(--magenta); color: #000; }
 
+  /* Hero */
+  .hero {
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: clamp(2rem, 6vh, 4rem);
+    border-bottom: 1px solid var(--line);
+  }
+  .glitch {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(7rem, 34vw, 30rem);
+    line-height: .8;
+    letter-spacing: -.02em;
+    position: relative;
+    display: inline-block;
+    color: var(--fg);
+    margin-left: -.04em;
+  }
+  .glitch::before, .glitch::after {
+    content: attr(data-text);
+    position: absolute; inset: 0;
+    pointer-events: none;
+  }
+  .glitch::before { color: var(--cyan); mix-blend-mode: screen; animation: slice-a 5s steps(1) infinite; }
+  .glitch::after  { color: var(--magenta); mix-blend-mode: screen; animation: slice-b 5s steps(1) infinite; }
+  @keyframes slice-a {
+    0%, 86%, 100% { clip-path: inset(0 0 100% 0); transform: none; }
+    87% { clip-path: inset(12% 0 62% 0); transform: translate(-.04em, 0); }
+    89% { clip-path: inset(58% 0 18% 0); transform: translate(.05em, 0); }
+    91% { clip-path: inset(30% 0 40% 0); transform: translate(-.02em, 0); }
+    93% { clip-path: inset(0 0 100% 0); }
+  }
+  @keyframes slice-b {
+    0%, 87%, 100% { clip-path: inset(0 0 100% 0); transform: none; }
+    88% { clip-path: inset(70% 0 8% 0); transform: translate(.05em, 0); }
+    90% { clip-path: inset(20% 0 55% 0); transform: translate(-.05em, 0); }
+    92% { clip-path: inset(44% 0 30% 0); transform: translate(.03em, 0); }
+    94% { clip-path: inset(0 0 100% 0); }
+  }
+  .tagline {
+    margin-top: 1.5rem;
+    color: var(--dim);
+    max-width: 38ch;
+  }
+
+  /* Sections */
+  section { padding: clamp(3rem, 9vh, 6rem) 0; border-bottom: 1px solid var(--line); }
+  h2 {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    line-height: .9;
+    margin-bottom: 2rem;
+  }
+  .bio p { max-width: 62ch; margin-bottom: 1.25rem; }
+  .bio p:last-child { margin-bottom: 0; }
+
+  /* Mixes */
+  .links { list-style: none; border-top: 1px solid var(--line); }
+  .links li { border-bottom: 1px solid var(--line); }
+  .links a {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 1.4rem 0;
+    text-decoration: none;
+    transition: padding .15s steps(3), color .15s;
+  }
+  .links .name {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(2rem, 6vw, 4rem);
+    line-height: 1;
+  }
+  .links .desc { color: var(--dim); text-align: right; font-size: .9rem; }
+  .links a:hover, .links a:focus-visible { padding-left: 1rem; color: var(--cyan); }
+  .links a:hover .desc, .links a:focus-visible .desc { color: var(--fg); }
+
+  /* Embed (optionnel) */
+  .embed { margin-top: 2.5rem; }
+  .embed iframe { width: 100%; border: 0; display: block; background: #0a0a0a; }
+
+  /* Contact */
+  .contact a {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(1.8rem, 6vw, 4rem);
+    text-decoration: none;
+    border-bottom: 3px solid var(--magenta);
+    word-break: break-all;
+  }
+  .contact a:hover { color: var(--magenta); }
+  .contact p { margin-top: 1.25rem; color: var(--dim); }
+
+  footer { padding: 2rem 0 3rem; color: var(--dim); font-size: .85rem; }
+
+  @media (max-width: 560px) {
+    .links a { flex-direction: column; gap: .25rem; }
+    .links .desc { text-align: left; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .glitch::before, .glitch::after { animation: none; display: none; }
+    html { scroll-behavior: auto; }
+    .links a { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1 class="glitch" data-text="A303">A303</h1>
+  <p class="tagline">DJ techno. Kicks secs, textures cassées, nuit entière.</p>
+</header>
+
+<main>
+  <section class="bio" id="bio">
+    <h2>Bio</h2>
+    <!-- À REMPLACER par votre vraie bio -->
+    <p>A303 joue une techno brute et minimale, taillée pour les pièces sombres et les basses lourdes. Des kicks tendus, des boucles qui s'usent, des glitchs qui coupent la nappe au bon moment.</p>
+    <p>Ses sets avancent sans ornement : une pulsation, du grain, de la tension qui monte jusqu'à la rupture. Pas de spectacle, juste le son et la salle.</p>
+    <p>Disponible pour clubs, soirées, warehouses et radios.</p>
+  </section>
+
+  <section id="mixes">
+    <h2>Écouter</h2>
+    <ul class="links">
+      <li>
+        <!-- Remplacez par l'adresse de votre profil SoundCloud -->
+        <a href="https://soundcloud.com/VOTRE-PROFIL" target="_blank" rel="noopener">
+          <span class="name">SoundCloud</span>
+          <span class="desc">Les mixes et les sets complets</span>
+        </a>
+      </li>
+      <li>
+        <!-- Remplacez par l'adresse de votre chaîne YouTube -->
+        <a href="https://www.youtube.com/@VOTRE-CHAINE" target="_blank" rel="noopener">
+          <span class="name">YouTube</span>
+          <span class="desc">Sets filmés et enregistrements</span>
+        </a>
+      </li>
+      <li>
+        <!-- Remplacez par l'adresse de votre Linktree -->
+        <a href="https://linktr.ee/VOTRE-PROFIL" target="_blank" rel="noopener">
+          <span class="name">Linktree</span>
+          <span class="desc">Tous les liens au même endroit</span>
+        </a>
+      </li>
+    </ul>
+
+    <!--
+      Pour lire un mix directement sur la page, supprimez les balises de commentaire
+      autour du bloc ci-dessous et remplacez l'adresse du mix dans "url=".
+      Sur SoundCloud : Partager > Intégrer, puis copiez l'adresse de l'iframe.
+
+    <div class="embed">
+      <iframe height="166" scrolling="no" allow="autoplay" title="Mix A303 sur SoundCloud"
+        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/VOTRE-PROFIL/VOTRE-MIX&color=%23ff2bd6&inverse=true&auto_play=false"></iframe>
+    </div>
+    -->
+  </section>
+
+  <section class="contact" id="contact">
+    <h2>Contact</h2>
+    <!-- Remplacez par votre adresse e-mail -->
+    <a href="mailto:contact@a303.fr">contact@a303.fr</a>
+    <p>Réservations, collaborations, demandes de mix.</p>
+  </section>
+</main>
+
+<footer>© <span id="y">2026</span> A303</footer>
+<script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+</body>
+</html>
