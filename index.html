@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>A303 – DJ techno</title>
+<title>A303 – Techno DJ</title>
 <meta name="description" content="A303, DJ and Original techno expert [1991-1995]. Mixes on SoundCloud and YouTube.">
 <meta property="og:title" content="A303 – DJ techno">
 <meta property="og:description" content="DJ and Original techno expert [1991-1995]. Mixes on SoundCloud and YouTube.">
@@ -20,6 +20,7 @@
     --magenta: #ff2bd6;
     --display: "Big Shoulders Display", Impact, "Arial Narrow Bold", sans-serif;
     --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+    --pad: clamp(1.25rem, 5vw, 4rem);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { background: var(--bg); color: var(--fg); scroll-behavior: smooth; }
@@ -28,7 +29,6 @@
     font-size: 1rem;
     line-height: 1.7;
     min-height: 100vh;
-    padding: 0 clamp(1.25rem, 5vw, 4rem);
     position: relative;
     overflow-x: hidden;
   }
@@ -45,93 +45,6 @@
   :focus-visible { outline: 2px solid var(--cyan); outline-offset: 4px; }
   ::selection { background: var(--magenta); color: #000; }
 
-  /* Hero */
-  .hero {
-    min-height: 92vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding-bottom: clamp(2rem, 6vh, 4rem);
-    border-bottom: 1px solid var(--line);
-  }
-  .glitch {
-    font-family: var(--display);
-    font-weight: 900;
-    font-size: clamp(7rem, 34vw, 30rem);
-    line-height: .8;
-    letter-spacing: -.02em;
-    position: relative;
-    display: inline-block;
-    color: var(--fg);
-    margin-left: -.04em;
-  }
-  .tagline {
-    margin-top: 1.5rem;
-    color: var(--dim);
-    max-width: 60ch;
-  }
-
-  /* Sections */
-  section { padding: clamp(3rem, 9vh, 6rem) 0; border-bottom: 1px solid var(--line); }
-  h2 {
-    font-family: var(--display);
-    font-weight: 900;
-    font-size: clamp(2.5rem, 7vw, 5rem);
-    line-height: .9;
-    margin-bottom: 2rem;
-    text-transform: lowercase;
-  }
-  .bio p { max-width: 62ch; margin-bottom: 1.25rem; }
-  .bio p:last-child { margin-bottom: 0; }
-
-  /* Mixes */
-  .links { list-style: none; border-top: 1px solid var(--line); }
-  .links li { border-bottom: 1px solid var(--line); }
-  .links a {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 1rem;
-    padding: 1.4rem 0;
-    text-decoration: none;
-    transition: padding .15s steps(3), color .15s;
-  }
-  .links .name {
-    font-family: var(--display);
-    font-weight: 900;
-    font-size: clamp(2rem, 6vw, 4rem);
-    line-height: 1;
-  }
-  .links .desc { color: var(--dim); text-align: right; font-size: .9rem; }
-  .links a:hover, .links a:focus-visible { padding-left: 1rem; color: var(--cyan); }
-  .links a:hover .desc, .links a:focus-visible .desc { color: var(--fg); }
-
-  /* Embed (optionnel) */
-  .embed { margin-top: 2.5rem; }
-  .embed iframe { width: 100%; border: 0; display: block; background: #0a0a0a; }
-
-  /* Contact */
-  .contact a {
-    font-family: var(--display);
-    font-weight: 900;
-    font-size: clamp(1.8rem, 6vw, 4rem);
-    text-decoration: none;
-    border-bottom: 3px solid var(--magenta);
-    word-break: break-all;
-  }
-  .contact a:hover { color: var(--magenta); }
-  .contact p { margin-top: 1.25rem; color: var(--dim); }
-
-  footer { padding: 2rem 0 3rem; color: var(--dim); font-size: .85rem; }
-
-  @media (max-width: 560px) {
-    .links a { flex-direction: column; gap: .25rem; }
-    .links .desc { text-align: left; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    .links a { transition: none; }
-  }
   /* Langues */
   html[lang="fr"] .en, html[lang="en"] .fr { display: none !important; }
   .lang {
@@ -139,12 +52,117 @@
     display: flex; gap: .25rem; z-index: 20; font-size: .9rem;
   }
   .lang button {
-    font: inherit; color: var(--dim); background: none; border: 0;
+    font: inherit; color: var(--fg); background: none; border: 0; opacity: .6;
     border-bottom: 2px solid transparent; padding: .25rem .5rem; cursor: pointer;
   }
-  .lang button:hover { color: var(--fg); }
-  .lang button[aria-pressed="true"] { color: var(--fg); border-bottom-color: var(--magenta); }
+  .lang button:hover { opacity: 1; }
+  .lang button[aria-pressed="true"] { opacity: 1; border-bottom-color: var(--magenta); }
 
+  /* 1. Bannière avec vidéo en boucle */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 var(--pad) clamp(2rem, 6vh, 4rem);
+    background: #000;
+  }
+  .hero video {
+    position: absolute; inset: 0; z-index: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.1);
+  }
+  .hero::after {
+    content: "";
+    position: absolute; inset: 0; z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(to top, rgba(0,0,0,.85) 0%, rgba(0,0,0,.35) 55%, rgba(0,0,0,.2) 100%);
+  }
+  .title, .tagline { position: relative; z-index: 1; }
+  .title {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(7rem, 34vw, 30rem);
+    line-height: .8;
+    letter-spacing: -.02em;
+    color: var(--fg);
+    margin-left: -.04em;
+  }
+  .tagline { margin-top: 1.5rem; max-width: 60ch; }
+
+  /* 2. Bio : photo à gauche, texte à droite (web) */
+  .bio {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    align-items: stretch;
+    padding: 0;
+  }
+  .bio-photo { position: relative; margin: 0; background: #111; min-height: 420px; overflow: hidden; }
+  .bio-photo img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    filter: grayscale(1) contrast(1.1);
+  }
+  .bio-text { align-self: center; max-width: 62ch; padding: clamp(3rem, 9vh, 6rem) var(--pad) clamp(3rem, 9vh, 6rem) clamp(2rem, 5vw, 5rem); }
+  .bio-text p { margin-bottom: 1.25rem; }
+  .bio-text p:last-child { margin-bottom: 0; }
+
+  /* Bio : texte en superposition sur la photo (mobile) */
+  @media (max-width: 720px) {
+    .bio { display: block; position: relative; padding: 0; }
+    .bio-photo, .bio-text { grid-area: auto; }
+    .bio-photo { position: absolute; inset: 0; min-height: 0; }
+    .bio-photo img { filter: grayscale(1) contrast(1.1) brightness(.55); }
+    .bio-text {
+      position: relative; z-index: 1; max-width: none;
+      padding: 3rem var(--pad);
+      background: linear-gradient(to bottom, rgba(0,0,0,.45), rgba(0,0,0,.7));
+    }
+  }
+
+  /* 3. Liens et contact */
+  .links { list-style: none; border-top: 1px solid var(--line); margin: 0; }
+  .links li { border-bottom: 1px solid var(--line); }
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 1.6rem var(--pad);
+  }
+  .name {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(2rem, 6vw, 4rem);
+    line-height: 1;
+    text-decoration: none;
+  }
+  a.row { text-decoration: none; transition: padding .15s steps(3), color .15s; }
+  a.row:hover, a.row:focus-visible { padding-left: calc(var(--pad) + 1rem); color: var(--cyan); }
+  .mail {
+    font-size: clamp(1rem, 2.4vw, 1.5rem);
+    text-decoration: none;
+    border-bottom: 2px solid var(--magenta);
+    word-break: break-all;
+    text-align: right;
+  }
+  .mail:hover { color: var(--magenta); }
+
+  footer { padding: 2rem var(--pad) 3rem; color: var(--dim); font-size: .85rem; }
+
+  @media (max-width: 560px) {
+    .row { flex-direction: column; gap: .5rem; }
+    .mail { text-align: left; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    a.row { transition: none; }
+  }
 </style>
 </head>
 <body>
@@ -154,56 +172,49 @@
   <button type="button" data-lang="en" aria-pressed="true">EN</button>
 </nav>
 
+<!-- 1. Bannière : déposez votre vidéo dans video/banner.mp4 -->
 <header class="hero">
-  <h1 class="glitch">A303</h1>
+  <video autoplay muted loop playsinline preload="auto" aria-hidden="true" tabindex="-1">
+    <source src="video/banner.mp4" type="video/mp4">
+  </video>
+  <h1 class="title">A303</h1>
   <p class="tagline">DJ and Original techno expert [1991-1995]</p>
 </header>
 
 <main>
+  <!-- 2. Bio : déposez votre photo dans images/bio.jpg -->
   <section class="bio" id="bio">
-    <h2><span class="fr">Bio</span><span class="en">Bio</span></h2>
+    <figure class="bio-photo" aria-hidden="true">
+      <img src="images/bio.jpg" alt="" onerror="this.style.visibility='hidden'">
+    </figure>
+    <div class="bio-text">
+      <p class="fr">Romain, passionné de musique, a un parcours singulier vers la techno.</p>
+      <p class="fr">Très jeune, il s'enflamme pour le hard rock des années 70 et 80 et développe un goût pour une musique brute, reflet d'une rébellion sociale.</p>
+      <p class="fr">À l'adolescence, il traverse plusieurs styles. La French touch ne lui offre pas le tranchant qu'il cherche. En 2009, le dubstep le captive, puis il découvre la techno entre 2011 et 2012 : pour lui, l'essence même de la musique électronique.</p>
+      <p class="fr">Le renouveau de la vie nocturne alternative à Paris, au début des années 2010, accompagne sa progression de mixeur débutant à DJ vinyle, pendant son séjour à Berlin de 2015 à 2018. Il s'immerge dans la scène, collectionne les disques et affine sa technique.</p>
+      <p class="fr">Centré sur la techno du début des années 90, Romain cherche à faire naître un son primal dans les clubs, avec une préférence pour les morceaux produits sur machines.</p>
+      <p class="fr">Sa mission : déprogrammer les esprits et ouvrir un accès plus profond à soi-même, par la danse et l'expression du corps.</p>
 
-    <p class="fr">Romain, passionné de musique, a un parcours singulier vers la techno.</p>
-    <p class="fr">Très jeune, il s'enflamme pour le hard rock des années 70 et 80 et développe un goût pour une musique brute, reflet d'une rébellion sociale.</p>
-    <p class="fr">À l'adolescence, il traverse plusieurs styles. La French touch ne lui offre pas le tranchant qu'il cherche. En 2009, le dubstep le captive, puis il découvre la techno entre 2011 et 2012 : pour lui, l'essence même de la musique électronique.</p>
-    <p class="fr">Le renouveau de la vie nocturne alternative à Paris, au début des années 2010, accompagne sa progression de mixeur débutant à DJ vinyle, pendant son séjour à Berlin de 2015 à 2018. Il s'immerge dans la scène, collectionne les disques et affine sa technique.</p>
-    <p class="fr">Centré sur la techno du début des années 90, Romain cherche à faire naître un son primal dans les clubs, avec une préférence pour les morceaux produits sur machines.</p>
-    <p class="fr">Sa mission : déprogrammer les esprits et ouvrir un accès plus profond à soi-même, par la danse et l'expression du corps.</p>
-
-    <p class="en">Romain, a passionate music enthusiast, has an intriguing journey into the world of techno.</p>
-    <p class="en">From an early age, he was enamored by hard rock genres from the 70s and 80s, cultivating a preference for raw music reflective of social rebellion.</p>
-    <p class="en">Transitioning through various musical styles during his adolescence, he initially explored French touch but found it lacking the raw edge he craved. Discovering dubstep in 2009 captivated him, and it led him to techno between 2011-2012, which he recognized as the essence of electronic music.</p>
-    <p class="en">The resurgence of alternative nightlife in Paris in the early 2010s coincided with his progression from a novice mixer to a vinyl DJ during his time in Berlin from 2015 to 2018. He immersed himself in the scene, collecting vinyl records and honing his skills.</p>
-    <p class="en">With a focus on early 90s techno, Romain aims to evoke a primal sound in clubs, emphasizing hardware-produced tracks.</p>
-    <p class="en">His mission involves deprogramming minds, facilitating a deeper connection to one's essence through dance and physical expression.</p>
+      <p class="en">Romain, a passionate music enthusiast, has an intriguing journey into the world of techno.</p>
+      <p class="en">From an early age, he was enamored by hard rock genres from the 70s and 80s, cultivating a preference for raw music reflective of social rebellion.</p>
+      <p class="en">Transitioning through various musical styles during his adolescence, he initially explored French touch but found it lacking the raw edge he craved. Discovering dubstep in 2009 captivated him, and it led him to techno between 2011-2012, which he recognized as the essence of electronic music.</p>
+      <p class="en">The resurgence of alternative nightlife in Paris in the early 2010s coincided with his progression from a novice mixer to a vinyl DJ during his time in Berlin from 2015 to 2018. He immersed himself in the scene, collecting vinyl records and honing his skills.</p>
+      <p class="en">With a focus on early 90s techno, Romain aims to evoke a primal sound in clubs, emphasizing hardware-produced tracks.</p>
+      <p class="en">His mission involves deprogramming minds, facilitating a deeper connection to one's essence through dance and physical expression.</p>
+    </div>
   </section>
 
-  <section id="mixes">
-    <h2><span class="fr">Écouter</span><span class="en">Listen</span></h2>
-    <ul class="links">
-      <li>
-        <a href="https://soundcloud.com/4three0three" target="_blank" rel="noopener">
-          <span class="name">SoundCloud</span>
-          <span class="desc fr">Les mixes et les sets complets</span>
-          <span class="desc en">Mixes and full sets</span>
-        </a>
-      </li>
-      <li>
-        <a href="https://www.youtube.com/@romain_aka_a303" target="_blank" rel="noopener">
-          <span class="name">YouTube</span>
-          <span class="desc fr">Sets filmés et enregistrements</span>
-          <span class="desc en">Filmed sets and recordings</span>
-        </a>
-      </li>
-    </ul>
-  </section>
-
-  <section class="contact" id="contact">
-    <h2><span class="fr">Contact</span><span class="en">Contact</span></h2>
-    
-    <a href="mailto:a303.anyway@gmail.com">a303.anyway@gmail.com</a>
-    <p>bookings &amp; enquiries</p>
-  </section>
+  <!-- 3. Liens et contact -->
+  <ul class="links" id="contact">
+    <li><a class="row" href="https://soundcloud.com/4three0three" target="_blank" rel="noopener"><span class="name">SoundCloud</span></a></li>
+    <li><a class="row" href="https://www.youtube.com/@romain_aka_a303" target="_blank" rel="noopener"><span class="name">YouTube</span></a></li>
+    <li>
+      <div class="row">
+        <span class="name">Contact</span>
+        <a class="mail" href="mailto:a303.anyway@gmail.com">a303.anyway@gmail.com</a>
+      </div>
+    </li>
+  </ul>
 </main>
 
 <footer>© <span id="y">2026</span> A303</footer>
@@ -211,12 +222,20 @@
 <script>
   document.getElementById("y").textContent = new Date().getFullYear();
 
+  // Vidéo : lecture auto, sauf si le visiteur a réduit les animations
+  var video = document.querySelector(".hero video");
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    video.removeAttribute("autoplay");
+    video.pause();
+  } else {
+    var p = video.play();
+    if (p && p.catch) p.catch(function () {});
+  }
+
+  // Langue
   var root = document.documentElement;
   var buttons = document.querySelectorAll(".lang button");
-  var titles = {
-    fr: "A303 – DJ techno",
-    en: "A303 – Techno DJ"
-  };
+  var titles = { fr: "A303 – DJ techno", en: "A303 – Techno DJ" };
 
   function setLang(lang) {
     root.lang = lang;
@@ -225,13 +244,10 @@
       b.setAttribute("aria-pressed", String(b.dataset.lang === lang));
     });
   }
-
   buttons.forEach(function (b) {
     b.addEventListener("click", function () { setLang(b.dataset.lang); });
   });
-
-  var initial = "en";
-  setLang(initial);
+  setLang("en");
 </script>
 </body>
 </html>
