@@ -4,18 +4,30 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>A303 – Techno DJ</title>
 
-  <meta name="description" content="A303, DJ and Original techno expert [1991-1995]. Mixes on SoundCloud and YouTube.">
+  <meta
+    name="description"
+    content="A303, DJ and Original techno expert [1991-1995]. Mixes on SoundCloud and YouTube."
+  >
 
   <meta property="og:title" content="A303 – DJ techno">
-  <meta property="og:description" content="DJ and Original techno expert [1991-1995]. Mixes on SoundCloud and YouTube.">
+  <meta
+    property="og:description"
+    content="DJ and Original techno expert [1991-1995]. Mixes on SoundCloud and YouTube."
+  >
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@900&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  >
 
   <style>
+
     :root {
       --bg: #000;
       --fg: #dcdcdc;
@@ -126,7 +138,7 @@
     }
 
     /* =========================
-       HERO / VIDEO
+       HERO / VIDÉO
        ========================= */
 
     .hero {
@@ -165,7 +177,6 @@
         brightness(.72);
     }
 
-    /* Overlay sombre sur la vidéo */
     .hero::after {
       content: "";
 
@@ -358,9 +369,7 @@
 
       .bio {
         display: block;
-
         position: relative;
-
         padding: 0;
       }
 
@@ -371,9 +380,7 @@
 
       .bio-photo {
         position: absolute;
-
         inset: 0;
-
         min-height: 0;
       }
 
@@ -386,7 +393,6 @@
 
       .bio-text {
         position: relative;
-
         z-index: 1;
 
         max-width: none;
@@ -443,6 +449,7 @@
        ========================= -->
 
   <nav class="lang" aria-label="Langue / Language">
+
     <button
       type="button"
       data-lang="fr"
@@ -456,6 +463,7 @@
       aria-pressed="true">
       EN
     </button>
+
   </nav>
 
 
@@ -474,8 +482,8 @@
       aria-hidden="true"
       tabindex="-1">
 
-      <!-- VIDÉO : video/A303.mp4 -->
-      <source src="video/A303.mp4" type="video/mp4">
+      <!-- VIDÉO A303.mp4 -->
+      <source src="A303.mp4" type="video/mp4">
 
     </video>
 
@@ -504,9 +512,9 @@
 
       <figure class="bio-photo" aria-hidden="true">
 
-        <!-- PHOTO : images/2.jpg -->
+        <!-- PHOTO 2.jpg -->
         <img
-          src="images/2.jpg"
+          src="2.jpg"
           alt=""
           onerror="this.style.visibility='hidden'">
 
@@ -617,6 +625,7 @@
     <ul class="links" id="contact">
 
       <li>
+
         <a
           class="row"
           href="https://soundcloud.com/4three0three"
@@ -628,10 +637,12 @@
           </span>
 
         </a>
+
       </li>
 
 
       <li>
+
         <a
           class="row"
           href="https://www.youtube.com/@romain_aka_a303"
@@ -643,6 +654,7 @@
           </span>
 
         </a>
+
       </li>
 
 
@@ -680,13 +692,10 @@
   </footer>
 
 
-  <!-- =========================
-       JAVASCRIPT
-       ========================= -->
-
   <script>
 
     /* Année automatique */
+
     document.getElementById("y").textContent =
       new Date().getFullYear();
 
@@ -695,7 +704,8 @@
        VIDÉO
        ========================= */
 
-    var video = document.querySelector(".hero video");
+    var video =
+      document.querySelector(".hero video");
 
     if (
       window.matchMedia(
@@ -721,7 +731,8 @@
        LANGUE FR / EN
        ========================= */
 
-    var root = document.documentElement;
+    var root =
+      document.documentElement;
 
     var buttons =
       document.querySelectorAll(".lang button");
@@ -736,13 +747,16 @@
 
       root.lang = lang;
 
-      document.title = titles[lang];
+      document.title =
+        titles[lang];
 
-      buttons.forEach(function (button) {
+      buttons.forEach(function(button) {
 
         button.setAttribute(
           "aria-pressed",
-          String(button.dataset.lang === lang)
+          String(
+            button.dataset.lang === lang
+          )
         );
 
       });
@@ -750,12 +764,14 @@
     }
 
 
-    buttons.forEach(function (button) {
+    buttons.forEach(function(button) {
 
       button.addEventListener(
         "click",
-        function () {
-          setLang(button.dataset.lang);
+        function() {
+          setLang(
+            button.dataset.lang
+          );
         }
       );
 
@@ -763,6 +779,7 @@
 
 
     /* Langue par défaut */
+
     setLang("en");
 
   </script>
