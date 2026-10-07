@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>A303 – DJ techno</title>
-<meta name="description" content="A303, DJ techno. Écoutez les mixes sur SoundCloud et YouTube.">
+<meta name="description" content="A303, DJ and Original techno expert [1991-1995]. Mixes on SoundCloud and YouTube.">
 <meta property="og:title" content="A303 – DJ techno">
-<meta property="og:description" content="Techno brute, sombre, glitchée. Mixes sur SoundCloud et YouTube.">
+<meta property="og:description" content="DJ and Original techno expert [1991-1995]. Mixes on SoundCloud and YouTube.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -65,31 +65,10 @@
     color: var(--fg);
     margin-left: -.04em;
   }
-  .glitch::before, .glitch::after {
-    content: attr(data-text);
-    position: absolute; inset: 0;
-    pointer-events: none;
-  }
-  .glitch::before { color: var(--cyan); mix-blend-mode: screen; animation: slice-a 5s steps(1) infinite; }
-  .glitch::after  { color: var(--magenta); mix-blend-mode: screen; animation: slice-b 5s steps(1) infinite; }
-  @keyframes slice-a {
-    0%, 86%, 100% { clip-path: inset(0 0 100% 0); transform: none; }
-    87% { clip-path: inset(12% 0 62% 0); transform: translate(-.04em, 0); }
-    89% { clip-path: inset(58% 0 18% 0); transform: translate(.05em, 0); }
-    91% { clip-path: inset(30% 0 40% 0); transform: translate(-.02em, 0); }
-    93% { clip-path: inset(0 0 100% 0); }
-  }
-  @keyframes slice-b {
-    0%, 87%, 100% { clip-path: inset(0 0 100% 0); transform: none; }
-    88% { clip-path: inset(70% 0 8% 0); transform: translate(.05em, 0); }
-    90% { clip-path: inset(20% 0 55% 0); transform: translate(-.05em, 0); }
-    92% { clip-path: inset(44% 0 30% 0); transform: translate(.03em, 0); }
-    94% { clip-path: inset(0 0 100% 0); }
-  }
   .tagline {
     margin-top: 1.5rem;
     color: var(--dim);
-    max-width: 38ch;
+    max-width: 60ch;
   }
 
   /* Sections */
@@ -100,6 +79,7 @@
     font-size: clamp(2.5rem, 7vw, 5rem);
     line-height: .9;
     margin-bottom: 2rem;
+    text-transform: lowercase;
   }
   .bio p { max-width: 62ch; margin-bottom: 1.25rem; }
   .bio p:last-child { margin-bottom: 0; }
@@ -149,75 +129,109 @@
     .links .desc { text-align: left; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .glitch::before, .glitch::after { animation: none; display: none; }
     html { scroll-behavior: auto; }
     .links a { transition: none; }
   }
+  /* Langues */
+  html[lang="fr"] .en, html[lang="en"] .fr { display: none !important; }
+  .lang {
+    position: absolute; top: 1.25rem; right: clamp(1.25rem, 5vw, 4rem);
+    display: flex; gap: .25rem; z-index: 20; font-size: .9rem;
+  }
+  .lang button {
+    font: inherit; color: var(--dim); background: none; border: 0;
+    border-bottom: 2px solid transparent; padding: .25rem .5rem; cursor: pointer;
+  }
+  .lang button:hover { color: var(--fg); }
+  .lang button[aria-pressed="true"] { color: var(--fg); border-bottom-color: var(--magenta); }
+
 </style>
 </head>
 <body>
 
+<nav class="lang" aria-label="Langue / Language">
+  <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+  <button type="button" data-lang="en" aria-pressed="true">EN</button>
+</nav>
+
 <header class="hero">
-  <h1 class="glitch" data-text="A303">A303</h1>
-  <p class="tagline">DJ techno. Kicks secs, textures cassées, nuit entière.</p>
+  <h1 class="glitch">A303</h1>
+  <p class="tagline">DJ and Original techno expert [1991-1995]</p>
 </header>
 
 <main>
   <section class="bio" id="bio">
-    <h2>Bio</h2>
-    <!-- À REMPLACER par votre vraie bio -->
-    <p>A303 joue une techno brute et minimale, taillée pour les pièces sombres et les basses lourdes. Des kicks tendus, des boucles qui s'usent, des glitchs qui coupent la nappe au bon moment.</p>
-    <p>Ses sets avancent sans ornement : une pulsation, du grain, de la tension qui monte jusqu'à la rupture. Pas de spectacle, juste le son et la salle.</p>
-    <p>Disponible pour clubs, soirées, warehouses et radios.</p>
+    <h2><span class="fr">Bio</span><span class="en">Bio</span></h2>
+
+    <p class="fr">Romain, passionné de musique, a un parcours singulier vers la techno.</p>
+    <p class="fr">Très jeune, il s'enflamme pour le hard rock des années 70 et 80 et développe un goût pour une musique brute, reflet d'une rébellion sociale.</p>
+    <p class="fr">À l'adolescence, il traverse plusieurs styles. La French touch ne lui offre pas le tranchant qu'il cherche. En 2009, le dubstep le captive, puis il découvre la techno entre 2011 et 2012 : pour lui, l'essence même de la musique électronique.</p>
+    <p class="fr">Le renouveau de la vie nocturne alternative à Paris, au début des années 2010, accompagne sa progression de mixeur débutant à DJ vinyle, pendant son séjour à Berlin de 2015 à 2018. Il s'immerge dans la scène, collectionne les disques et affine sa technique.</p>
+    <p class="fr">Centré sur la techno du début des années 90, Romain cherche à faire naître un son primal dans les clubs, avec une préférence pour les morceaux produits sur machines.</p>
+    <p class="fr">Sa mission : déprogrammer les esprits et ouvrir un accès plus profond à soi-même, par la danse et l'expression du corps.</p>
+
+    <p class="en">Romain, a passionate music enthusiast, has an intriguing journey into the world of techno.</p>
+    <p class="en">From an early age, he was enamored by hard rock genres from the 70s and 80s, cultivating a preference for raw music reflective of social rebellion.</p>
+    <p class="en">Transitioning through various musical styles during his adolescence, he initially explored French touch but found it lacking the raw edge he craved. Discovering dubstep in 2009 captivated him, and it led him to techno between 2011-2012, which he recognized as the essence of electronic music.</p>
+    <p class="en">The resurgence of alternative nightlife in Paris in the early 2010s coincided with his progression from a novice mixer to a vinyl DJ during his time in Berlin from 2015 to 2018. He immersed himself in the scene, collecting vinyl records and honing his skills.</p>
+    <p class="en">With a focus on early 90s techno, Romain aims to evoke a primal sound in clubs, emphasizing hardware-produced tracks.</p>
+    <p class="en">His mission involves deprogramming minds, facilitating a deeper connection to one's essence through dance and physical expression.</p>
   </section>
 
   <section id="mixes">
-    <h2>Écouter</h2>
+    <h2><span class="fr">Écouter</span><span class="en">Listen</span></h2>
     <ul class="links">
       <li>
-        <!-- Remplacez par l'adresse de votre profil SoundCloud -->
-        <a href="https://soundcloud.com/VOTRE-PROFIL" target="_blank" rel="noopener">
+        <a href="https://soundcloud.com/4three0three" target="_blank" rel="noopener">
           <span class="name">SoundCloud</span>
-          <span class="desc">Les mixes et les sets complets</span>
+          <span class="desc fr">Les mixes et les sets complets</span>
+          <span class="desc en">Mixes and full sets</span>
         </a>
       </li>
       <li>
-        <!-- Remplacez par l'adresse de votre chaîne YouTube -->
-        <a href="https://www.youtube.com/@VOTRE-CHAINE" target="_blank" rel="noopener">
+        <a href="https://www.youtube.com/@romain_aka_a303" target="_blank" rel="noopener">
           <span class="name">YouTube</span>
-          <span class="desc">Sets filmés et enregistrements</span>
-        </a>
-      </li>
-      <li>
-        <!-- Remplacez par l'adresse de votre Linktree -->
-        <a href="https://linktr.ee/VOTRE-PROFIL" target="_blank" rel="noopener">
-          <span class="name">Linktree</span>
-          <span class="desc">Tous les liens au même endroit</span>
+          <span class="desc fr">Sets filmés et enregistrements</span>
+          <span class="desc en">Filmed sets and recordings</span>
         </a>
       </li>
     </ul>
-
-    <!--
-      Pour lire un mix directement sur la page, supprimez les balises de commentaire
-      autour du bloc ci-dessous et remplacez l'adresse du mix dans "url=".
-      Sur SoundCloud : Partager > Intégrer, puis copiez l'adresse de l'iframe.
-
-    <div class="embed">
-      <iframe height="166" scrolling="no" allow="autoplay" title="Mix A303 sur SoundCloud"
-        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/VOTRE-PROFIL/VOTRE-MIX&color=%23ff2bd6&inverse=true&auto_play=false"></iframe>
-    </div>
-    -->
   </section>
 
   <section class="contact" id="contact">
-    <h2>Contact</h2>
-    <!-- Remplacez par votre adresse e-mail -->
-    <a href="mailto:contact@a303.fr">contact@a303.fr</a>
-    <p>Réservations, collaborations, demandes de mix.</p>
+    <h2><span class="fr">Contact</span><span class="en">Contact</span></h2>
+    
+    <a href="mailto:a303.anyway@gmail.com">a303.anyway@gmail.com</a>
+    <p>bookings &amp; enquiries</p>
   </section>
 </main>
 
 <footer>© <span id="y">2026</span> A303</footer>
-<script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+
+<script>
+  document.getElementById("y").textContent = new Date().getFullYear();
+
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll(".lang button");
+  var titles = {
+    fr: "A303 – DJ techno",
+    en: "A303 – Techno DJ"
+  };
+
+  function setLang(lang) {
+    root.lang = lang;
+    document.title = titles[lang];
+    buttons.forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.dataset.lang === lang));
+    });
+  }
+
+  buttons.forEach(function (b) {
+    b.addEventListener("click", function () { setLang(b.dataset.lang); });
+  });
+
+  var initial = "en";
+  setLang(initial);
+</script>
 </body>
 </html>
